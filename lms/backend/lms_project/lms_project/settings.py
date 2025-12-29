@@ -101,3 +101,17 @@ TEMPLATES = [
         },
     },
 ]
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Additional locations the staticfiles app will search
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Development-friendly default for allowed hosts
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+
+# Root URL config module
+ROOT_URLCONF = 'lms_project.urls'

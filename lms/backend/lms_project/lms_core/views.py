@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Avg
 from django.contrib.auth import get_user_model
 from .models import Category, Course, Enrollment, Lesson
 from .serializers import (
@@ -185,7 +185,7 @@ def dashboard_stats(request):
             'in_progress': my_enrollments.filter(status='in_progress').count(),
             'completed': my_enrollments.filter(status='completed').count(),
             'average_progress': my_enrollments.aggregate(
-                avg_progress=models.Avg('progress_percentage')
+                avg_progress=Avg('progress_percentage')
             )['avg_progress'] or 0,
         }
     
